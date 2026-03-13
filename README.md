@@ -9,7 +9,6 @@ API monolitica con Spring Boot, JWT y MySQL. No usa microservicios.
 - CRUD basico de caballos: listar, ver detalle y crear.
 - Inscripcion de caballos a carreras.
 - Docker para desarrollo local.
-- Despliegue listo para Google Cloud Run con Cloud SQL.
 
 ## Endpoints
 
@@ -33,10 +32,3 @@ Credenciales iniciales del administrador:
 
 - usuario: `admin`
 - clave: `Admin123*`
-
-## Google Cloud
-
-1. Crea MySQL en Cloud SQL.
-2. Crea Artifact Registry.
-3. Ajusta `cloudbuild.yaml`.
-4. Ejecuta `gcloud builds submit --config cloudbuild.yaml`.
