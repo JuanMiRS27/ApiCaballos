@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: carreras-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: carreras_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  api:
+    build: .
+    container_name: carreras-api
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/carreras_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      APP_JWT_SECRET: ZXN0YS1lcy11bmEtY2xhdmUtZGUtbWFzLWRlLTMyLWJ5dGVzLXBhcmEtand0
+      APP_ADMIN_USERNAME: admin
+      APP_ADMIN_PASSWORD: Admin123*
+      APP_ADMIN_EMAIL: admin@carreras.local
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
